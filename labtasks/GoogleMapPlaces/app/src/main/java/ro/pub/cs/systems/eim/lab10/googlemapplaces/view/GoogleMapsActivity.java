@@ -17,8 +17,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,14 +107,22 @@ public class GoogleMapsActivity extends AppCompatActivity implements GoogleApiCl
         public void onClick(View view) {
 
             // TODO exercise 6a
-            // check whether latitude, longitude and name are filled, otherwise long an error
+            // check whether latitude, longitude and name are filled, otherwise long an aerror
             // navigate to the requested position (latitude, longitude)
             // create a MarkerOptions object with position, title and icon taken from the corresponding widgets
             // hint: for icon, use BitmapDescriptorFactory.defaultMarker() method
             // add the MarkerOptions to the Google Map
             // add the Place information to the places list
             // notify the placesAdapter that the data set was changed
-
+            MarkerOptions marker = new MarkerOptions()
+                    .position(new LatLng(
+                            Double.parseDouble(latitudeEditText.getText().toString()),
+                            Double.parseDouble(
+                                    .getText().toString())
+                    ))
+                    .title(nameEditText.getText().toString());
+            marker.icon(BitmapDescriptorFactory.defaultMarker(Utilities.getDefaultMarker(markerTypeSpinner.getSelectedItemPosition())));
+            googleMap.addMarker(marker);
         }
     }
 
